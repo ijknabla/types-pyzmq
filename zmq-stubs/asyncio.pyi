@@ -1,7 +1,7 @@
-from contextlib import AbstractContextManager as _AbstractContextManager
+from contextlib import AbstractContextManager
 from typing import Any
 
-import zmq as _zmq
+import zmq
 
 class Context:
     def __init__(self, io_threads: int = ...) -> None: ...
@@ -10,8 +10,8 @@ class Context:
         socket_type: int,
     ) -> Socket: ...
 
-class Socket(_AbstractContextManager["Socket"]):
-    def connect(self, addr: str) -> _zmq._SocketContext: ...
+class Socket(AbstractContextManager["Socket"]):
+    def connect(self, addr: str) -> zmq._SocketContext: ...
     async def recv_string(
         self,
         flags: int | None = ...,
